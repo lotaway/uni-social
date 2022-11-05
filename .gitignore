@@ -1,0 +1,7 @@
+/node_modules/*
+/.idea/*
+/.svn/*
+.history
+/dist
+#Electron-builder output
+/dist_electron

@@ -1,0 +1,18 @@
+{
+    "globalName": "Social Star",
+    "confirm": "yes",
+    "cancel": "cancel",
+    "pageBottomTip": "Reach the bottom",
+    "pageTitleRoomList": "City",
+    "pageTitleSquare": "Square",
+    "pageTitleFind": "Find",
+    "pageTitleChatList": "Chat",
+    "pageTitleSignIn": "SignIn",
+    "pageTitleUser": "User",
+    "roomList": {
+        "title": "ChatRoom",
+        "roomType": "Room Type",
+        "isEmpty": "No Room"
+    },
+    "signInTip": "Have an account?"
+}

@@ -1,0 +1,18 @@
+{
+    "globalName": "社交星球",
+    "confirm": "确定",
+    "cancel": "取消",
+    "pageBottomTip": "已经是底部了",
+    "pageTitleRoomList": "城市",
+    "pageTitleSquare": "广场",
+    "pageTitleFind": "发现",
+    "pageTitleChatList": "消息",
+    "pageTitleSignIn": "登录",
+    "pageTitleUser": "我的",
+    "roomList": {
+        "title": "聊天室",
+        "roomType": "房间类型",
+        "isEmpty": "还没有聊天室"
+    },
+    "signInTip": "已经有账号？"
+}
