@@ -1,13 +1,21 @@
-import {API} from "../config/api";
-/**
- * 路由控制器
- */
-class RouterController {
+//  @@router("路由控制器")
+import Uni, {Router, SwitchTab} from "../utils/uni";
 
-    static get API() {
-        return API;
+export type View = {}
+
+@Router("main-id")
+export default class RouterController {
+
+    constructor() {
+
     }
 
-}
+    @SwitchTab()
+    public switchTab(path: string) {
+        return path;
+    }
 
-export default RouterController;
+    public navigateTo(path: string) {
+        return path;
+    }
+}

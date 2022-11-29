@@ -14,12 +14,12 @@ Container.container
 							button.fast-tool-btn(@tap="handleFastTool(0)")
 								.icon-plus
 		.room-filter
-			u-action-sheet(:list="$store.state.room.filter.type.list",v-model="isShowRoomFilter")
+			u-action-sheet(:list="$store.state.room.roomTypeList",v-model="isShowRoomFilter")
 			.drawer
 				.title {{$t('roomList.roomType')}}
 				.default
 					.row.room-type-item
-						.col(:span='8',v-for="typ in $store.state.room.filter.type.list")
+						.col(:span='8',v-for="typ in $store.state.room.roomTypeList")
 							button(@tap="selectFilteType(typ.value)",:class="tempSelectedType === typ.value ? ' bg-brand-color' : ' bg-dark-fill'") {{typ.name}}
 				.footer
 					button(type="primary",circle,@tap="confirmFilter") {{$t("confirm")}}
@@ -74,7 +74,7 @@ Container.container
 	
 </script>
 <script lang="ts">
-import Container from "../../components/Container";
+import Container from "../../components/Container.vue";
 import initConfig from "../../config/init_config";
 
 export default {

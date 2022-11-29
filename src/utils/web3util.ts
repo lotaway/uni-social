@@ -14,8 +14,17 @@ class BlockChain extends Web3 {
 		if (this.web3 !== null) {
 			this.web3 = new BlockChain((this.web3 as Web3).currentProvider);
 		}
+		//	#ifdef H5
+		else if ((<any>window).ethereum) {
+			//	using MetaMask
+			this.web3 = new BlockChain((<any>window).ethereum);
+		}
+		//	#endif
+		else {
+			this.web3 = new BlockChain(new BlockChain.providers.HttpProvider(provider || BlockChain.givenProvider));
+		}
 
-		return new BlockChain(new BlockChain.providers.HttpProvider(provider || BlockChain.givenProvider));
+		return this.web3;
 	}
 
 }

@@ -5,6 +5,13 @@ web-view.web-view(:src="props.url")
     .web-view
         // overflow: hidden
 </style>
+<script lang="ts" setup>
+import {onMounted} from "vue";
+
+onMounted(() => {
+
+});
+</script>
 <script lang="ts">
 
 //  in the webview url page

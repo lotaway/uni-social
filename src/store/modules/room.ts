@@ -1,7 +1,7 @@
 import {Module, VuexModule, Mutation, Action, MutationAction} from "vuex-module-decorators";
-import ProviderChat from "../../provider/chat";
+import NSChat from "../../provider/chat";
 
-const providerChat = new ProviderChat();
+const providerChat = new NSChat.Provider();
 
 type Rooms = Array<{
     id: number
@@ -20,32 +20,20 @@ type Rooms = Array<{
     }>
 }>
 
+enum RoomType {
+    Look = 1,
+    Chat = 2,
+    Listen = 3,
+    Play = 4
+}
+
 @Module({
     namespaced: true
 })
 export default class Room extends VuexModule {
 
     filter = {
-        type: {
-            list: [
-                {
-                    name: "一起看",
-                    value: 1
-                },
-                {
-                    name: "一起聊",
-                    value: 2
-                },
-                {
-                    name: "听歌K歌",
-                    value: 3
-                },
-                {
-                    name: "一起玩",
-                    value: 4
-                }
-            ]
-        }
+        roomTypeEnum: RoomType
     };
     list: Rooms = [];
     pageNumber = 0;
@@ -54,6 +42,10 @@ export default class Room extends VuexModule {
 
     get isEnd() {
         return this.pageNumber === this.pageTotal;
+    }
+
+    get roomTypeList() {
+        return Object.values(this.filter.roomTypeEnum);
     }
 
     @Mutation
@@ -85,8 +77,8 @@ export default class Room extends VuexModule {
     async _getNextPage() {
         const pageNumber = this.pageNumber + 1,
             result = await providerChat.getRoomByPageIndex({
-            pageNumber: pageNumber
-        });
+                pageNumber: pageNumber
+            });
 
         return {
             pageNumber,

@@ -2,6 +2,10 @@ import Uni from '../utils/uni';
 import initConfig from "../config/init_config";
 import Logger from "../utils/logger";
 
+interface IFProvider {
+    request: (...params: any) => {}
+}
+
 interface BaseProviderOptions extends Object {
     HOST?: string
     HOST_API?: string
@@ -31,54 +35,63 @@ interface ResponseData extends Object {
     status?: number
 }
 
+//  预设默认参数
+const useDefaultParam = (...defaultParams: any[]) => {
+    return (target: any, propName: string, descriptor: PropertyDescriptor) => {
+        const method = descriptor.value;
+
+        descriptor.value = function (...realParams: any[]) {
+            return method.call(this, ...(defaultParams.length > realParams.length ? defaultParams : realParams).map((item, index) => {
+                let def = defaultParams[index]
+                    , real = realParams[index]
+                ;
+
+                if (def?.constructor === Object && real?.constructor === Object) {
+                    Object.keys(def).forEach(key => {
+                        real[key] = real[key] ?? def[key];
+                    });
+                }
+
+                return real ?? def;
+            }));
+        };
+    }
+};
+
+/**
+ * 适配装饰器
+ * @param adapter {function} 适配器
+ */
+const useAdapter = (adapter: (result2: any) => any) => {
+    return (target: any, propName: string, descriptor: PropertyDescriptor) => {
+        const method = descriptor.value;
+
+        descriptor.value = function (...params: any[]) {
+            return method.call(this, ...params).then(adapter);
+        };
+    }
+};
+
+function Provider(target: any) {
+    const callback = target.value;
+
+    target.value = function () {
+        callback.call(this);
+    }
+}
+
 /**
  * 业务接口服务封装
  */
-class BaseProvider {
+@Provider
+class BaseProvider implements IFProvider {
 
     HOST: string
     HOST_API: string
 
     constructor(options?: BaseProviderOptions) {
-		this.HOST = options?.HOST ?? "";
+        this.HOST = options?.HOST ?? "";
         this.HOST_API = options?.HOST_API ?? this.HOST;
-    }
-
-    //  预设默认参数
-    static defaultParams(...defaultParams: any[]) {
-        return (target: any, propName: string, descriptor: PropertyDescriptor) => {
-            const method = descriptor.value;
-
-            descriptor.value = function (...realParams: any[]) {
-                return method.call(this, ...(defaultParams.length > realParams.length ? defaultParams : realParams).map((item, index) => {
-                    let def = defaultParams[index]
-                        , real = realParams[index]
-                    ;
-
-                    if (def?.constructor === Object && real?.constructor === Object) {
-                        Object.keys(def).forEach(key => {
-                            real[key] = real[key] ?? def[key];
-                        });
-                    }
-
-                    return real ?? def;
-                }));
-            };
-        }
-    }
-
-    /**
-     * 适配装饰器
-     * @param adapter {function} 适配器
-     */
-    static useAdapter(adapter: (result2: any) => any) {
-        return (target: any, propName: string, descriptor: PropertyDescriptor) => {
-            const method = descriptor.value;
-
-            descriptor.value = function (...params: any[]) {
-                return method.call(this, ...params).then(adapter);
-            };
-        }
     }
 
     /**
@@ -102,22 +115,22 @@ class BaseProvider {
     }
 
     static getData(storeName: string): Promise<any> {
-		
-		return Uni.storage(storeName).then(strData => {
-			if (strData) {
-			    let storeValue: string | StoreValue = "";
-				
-				try {
-					storeValue = JSON.parse(strData) as StoreValue;
-				} catch(err) {
-					
-				}
-			    return storeValue ? Promise.resolve((storeValue as StoreValue).data) : Promise.reject("");
-			} else {
-			    return Promise.reject("No data");
-			}
-		});
-		
+
+        return Uni.storage(storeName).then(strData => {
+            if (strData) {
+                let storeValue: string | StoreValue = "";
+
+                try {
+                    storeValue = JSON.parse(strData) as StoreValue;
+                } catch (err) {
+
+                }
+                return storeValue ? Promise.resolve((storeValue as StoreValue).data) : Promise.reject("");
+            } else {
+                return Promise.reject("No data");
+            }
+        });
+
     }
 
     static saveData(storeName: string, data: StoreValue["data"]): Promise<any> {
@@ -184,14 +197,14 @@ class BaseProvider {
      * @param {object} header 请求头部信息
      * @return {Promise} 是否成功
      */
-     request(apiName: string, data = {}, method = "POST", dataType = "json", pathParam = {}, header: RequestHeader = {}) {
-            return Uni.request({
-                header,
-                method: method as any,
-                url: this.getApiUrl(apiName),
-                dataType,
-                data
-            });
+    request(apiName: string, data = {}, method = "POST", dataType = "json", pathParam = {}, header: RequestHeader = {}) {
+        return Uni.request({
+            header,
+            method: method as any,
+            url: this.getApiUrl(apiName),
+            dataType,
+            data
+        });
     }
 
     /**
@@ -211,4 +224,4 @@ class BaseProvider {
 
 }
 
-export {BaseProvider, BaseProviderOptions};
+export {BaseProvider, BaseProviderOptions, useDefaultParam, useAdapter};

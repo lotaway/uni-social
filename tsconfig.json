@@ -9,9 +9,21 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "reflect-metadata",
+      "@dcloudio/types",
+      "node"
+    ],
     "experimentalDecorators": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ]
 }
