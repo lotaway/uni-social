@@ -1,0 +1,203 @@
+{
+  "@platforms": [
+    "android",
+    "iPhone",
+    "iPad"
+  ],
+  "id": "__UNI__1C513A6",
+  "name": "uni-social",
+  "version": {
+    "name": "1.0.1",
+    "code": "100"
+  },
+  "description": "",
+  "developer": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "permissions": {
+    "UniNView": {
+      "description": "UniNView原生渲染"
+    }
+  },
+  "plus": {
+    "useragent": {
+      "value": "uni-app",
+      "concatenate": true
+    },
+    "splashscreen": {
+      "target": "defalt",
+      "autoclose": true,
+      "waiting": true,
+      "event": "loaded",
+      "dealy": 0,
+      "ads": {
+        "backaground": "#RRGGBB",
+        "image": ""
+      },
+      "androidTranslucent": false,
+      "delay": 0
+    },
+    "popGesture": "close",
+    "launchwebview": {
+      "id": "1",
+      "kernel": "WKWebview"
+    },
+    "usingComponents": true,
+    "nvueStyleCompiler": "uni-app",
+    "compilerVersion": 3,
+    "distribute": {
+      "splashscreen": {
+        "useOriginalMsgbox": true
+      },
+      "google": {
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+          "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+          "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+          "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+          "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+          "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+          "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+          "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+          "<uses-feature android:name=\"android.hardware.camera\"/>",
+          "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+        ],
+        "abiFilters": [
+          "armeabi-v7a",
+          "arm64-v8a",
+          "x86"
+        ],
+        "targetSdkVersion": 26,
+        "minSdkVersion": 21,
+        "pushRegisterMode": "manual"
+      },
+      "apple": {
+        "idfa": false,
+        "pushRegisterMode": "manual"
+      },
+      "plugins": {
+        "audio": {
+          "mp3": {
+            "description": "Android平台录音支持MP3格式文件"
+          }
+        }
+      }
+    },
+    "statusbar": {
+      "immersed": "supportedDevice",
+      "style": "dark",
+      "background": "#F8F8F8"
+    },
+    "arguments": "{\"name\":\"test\",\"path\":\"pages/chat/roomList\",\"query\":\"isFirstPage=true\"}",
+    "uniStatistics": {
+      "enable": false
+    },
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#424242",
+      "bottom": {
+        "offset": "auto"
+      }
+    },
+    "uni-app": {
+      "control": "uni-v3",
+      "vueVersion": "3",
+      "compilerVersion": "3.8.12",
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      },
+      "nvueLaunchMode": "normal",
+      "webView": {
+        "minUserAgentVersion": "49.0"
+      }
+    },
+    "tabBar": {
+      "position": "bottom",
+      "color": "#999",
+      "selectedColor": "#fff",
+      "borderStyle": "rgba(0,0,0,0.4)",
+      "blurEffect": "none",
+      "fontSize": "10px",
+      "iconWidth": "24px",
+      "spacing": "3px",
+      "height": "50px",
+      "backgroundColor": "#424242",
+      "list": [
+        {
+          "pagePath": "pages/chat/roomList",
+          "iconPath": "/static/image/icon-room-list.png",
+          "selectedIconPath": "/static/image/icon-room-list-selected.png",
+          "text": "City",
+          "textLocales": {
+            "en": "City",
+            "zh-Hans": "城市"
+          }
+        },
+        {
+          "pagePath": "pages/find/square",
+          "iconPath": "/static/image/icon-square.png",
+          "selectedIconPath": "/static/image/icon-square-selected.png",
+          "text": "Square",
+          "textLocales": {
+            "en": "Square",
+            "zh-Hans": "广场"
+          }
+        },
+        {
+          "pagePath": "pages/find/find",
+          "iconPath": "/static/image/icon-find.png",
+          "selectedIconPath": "/static/image/icon-find-selected.png",
+          "text": "Find",
+          "textLocales": {
+            "en": "Find",
+            "zh-Hans": "发现"
+          }
+        },
+        {
+          "pagePath": "pages/chat/chatList",
+          "iconPath": "/static/image/icon-chat-list.png",
+          "selectedIconPath": "/static/image/icon-chat-list.png",
+          "text": "Chat",
+          "textLocales": {
+            "en": "Chat",
+            "zh-Hans": "消息"
+          }
+        },
+        {
+          "pagePath": "pages/user/user",
+          "iconPath": "/static/image/icon-user.png",
+          "selectedIconPath": "/static/image/icon-user-selected.png",
+          "text": "User",
+          "textLocales": {
+            "en": "User",
+            "zh-Hans": "我的"
+          }
+        }
+      ],
+      "selectedIndex": 0,
+      "shown": true,
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
+    }
+  },
+  "locale": "auto",
+  "screenOrientation": [
+    "portrait-primary",
+    "portrait-secondary",
+    "landscape-primary",
+    "landscape-secondary"
+  ],
+  "launch_path": "__uniappview.html",
+  "fallbackLocale": "en"
+}

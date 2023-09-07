@@ -67,7 +67,7 @@ module.exports = {
                 mac: {
                     icon: './public/app.jpg'
                 },
-                productName: 'uniapp-vue3-vuex-ts' // 应用名称
+                productName: 'uni-social' // 应用名称
             }
         }
     }

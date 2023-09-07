@@ -1,0 +1,26 @@
+
+export enum ResultStatus {
+	Current,
+	ContextMissing,
+}
+
+export interface ResponseInfo {
+	status: ResultStatus
+	level: number
+	isCharging: boolean
+}
+
+export class SuccessResponseInfo implements ResponseInfo {
+	status: ResultStatus = ResultStatus.Current
+	constructor(public level: number, public isCharging: boolean) {}
+}
+
+export class ErrorResponseInfo implements ResponseInfo {
+	static readonly ContextMissing = new ErrorResponseInfo(ResultStatus.ContextMissing)
+	public level: number = 0
+	public isCharging: boolean = false
+	constructor(public status: ResultStatus) {
+		
+	}
+	
+}

@@ -1,0 +1,17 @@
+// 引用 iOS 原生平台 api
+import { UIDevice } from "UIKit";
+import { Int } from 'Swift';
+import {ResponseInfo, SuccessResponseInfo, ErrorResponseInfo} from "../interface.uts"
+
+/**
+ * 获取电量方法
+ */
+export function getBatteryInfo(): ResponseInfo {
+	// 开启电量检测
+	UIDevice.current.isBatteryMonitoringEnabled = true
+	// const intVal = new Int(UIDevice.current.batteryLevel * 100)
+	return new SuccessResponseInfo(
+		UIDevice.current.batteryLevel * 100,
+		UIDevice.current.batteryState == UIDevice.BatteryState.charging
+	)
+}
