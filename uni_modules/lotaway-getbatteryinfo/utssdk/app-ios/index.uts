@@ -1,7 +1,18 @@
 // 引用 iOS 原生平台 api
-import { UIDevice } from "UIKit";
-import { Int } from 'Swift';
-import {ResponseInfo, SuccessResponseInfo, ErrorResponseInfo} from "../interface.uts"
+import { UIDevice , UIApplication } from "UIKit";
+// import { Int } from 'Swift';
+import {LightUpScreenClear, ResponseInfo, SuccessResponseInfo, ErrorResponseInfo} from "../interface.uts"
+
+// keep screen light up
+export function lightUpScreen(): LightUpScreenClear {
+	// UIApplication.sharedApplication().idleTimerDisabled = true
+	UIApplication.shared.isIdleTimerDisabled = true
+	return () => stopLightUpScreen()
+}
+
+export function stopLightUpScreen(): void {
+	UIApplication.shared.isIdleTimerDisabled = false
+}
 
 /**
  * 获取电量方法

@@ -1,3 +1,4 @@
+export type LightUpScreenClear = () => void
 
 export enum ResultStatus {
 	Current,
